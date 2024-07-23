@@ -45,6 +45,15 @@ app.post('/api/leads', async (req, res) => {
   }
 });
 
+app.get('/api/leads', async (req, res) => {
+  try {
+    const leads = await Lead.find();
+    res.json(leads);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
