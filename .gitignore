@@ -1,0 +1,101 @@
+# Dependencias
+/node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Producción
+/build
+
+# Misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Sistema operativo
+Thumbs.db
+
+# Directorios específicos del proyecto
+/mongodb_data
+/backend/node_modules
+/frontend/node_modules
+/backend/dist
+/frontend/build
+
+# Archivos de configuración local
+.env
+
+# Archivos de caché
+.cache
+.eslintcache
+
+# Archivos temporales
+*.tmp
+*.temp
+*.bak
+
+# Archivos de bloqueo de paquetes (descomenta según tu gestor de paquetes)
+# yarn.lock
+# package-lock.json
+
+# Directorios de Docker
+.docker
+
+# Archivos de respaldo
+*.backup
+*.bak
+*.swp
+*.swo
+
+# Archivos de registro
+*.log
+
+# Archivos de configuración específicos del sistema
+.editorconfig
+.prettierrc
+
+# Archivos de cobertura de pruebas
+/coverage
+.nyc_output
+
+# Archivos de compilación
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Archivos de paquetes
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Documentación generada
+/docs
+
+# Archivos de base de datos
+*.sqlite

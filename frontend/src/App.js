@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import './App.css';
+import './index.css';
 
 function App() {
   const [leads, setLeads] = useState([]);
@@ -16,14 +16,16 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
+      <div className="flex flex-col min-h-screen bg-gray-900 text-gray-100">
         <Header />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home onLeadSubmit={handleLeadSubmit} leads={leads} />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
+        <main className="flex-grow">
+          <div className="container mx-auto px-4 py-8">
+            <Routes>
+              <Route path="/" element={<Home onLeadSubmit={handleLeadSubmit} leads={leads} />} />
+              <Route path="/sobre-nosotros" element={<About />} />
+              <Route path="/contacto" element={<Contact />} />
+            </Routes>
+          </div>
         </main>
         <Footer />
       </div>

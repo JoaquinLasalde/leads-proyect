@@ -10,7 +10,7 @@ services:
   backend:
     build: ./backend
     ports:
-      - "5001:5001"  # Cambiado de 5000 a 5001
+      - "5001:5001"
     volumes:
       - ./backend:/app
       - /app/node_modules
@@ -18,13 +18,15 @@ services:
       - mongo
     environment:
       - MONGODB_URI=mongodb://mongo:27017/leaddb
-      - PORT=5001  # Añadido para especificar el nuevo puerto
+      - PORT=5001
   mongo:
     image: mongo:latest
     ports:
       - "27017:27017"
     volumes:
-      - mongodata:/data/db
+      - ./mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=leaddb
 
 volumes:
-  mongodata:
+  mongodb_data:

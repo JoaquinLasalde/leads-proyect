@@ -9,12 +9,21 @@ const PORT = process.env.PORT || 5001;
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log('Conectado a MongoDB'))
-.catch(err => console.error('Error conectando a MongoDB:', err));
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 5000,
+    });
+    console.log('Conectado a MongoDB');
+  } catch (err) {
+    console.error('Error conectando a MongoDB:', err);
+    process.exit(1);
+  }
+};
+
+connectDB();
 
 const leadSchema = new mongoose.Schema({
   name: String,
@@ -26,7 +35,6 @@ const leadSchema = new mongoose.Schema({
 
 const Lead = mongoose.model('Lead', leadSchema);
 
-// Solo mantenemos la ruta para crear nuevos leads
 app.post('/api/leads', async (req, res) => {
   const lead = new Lead(req.body);
   try {
@@ -39,4 +47,15 @@ app.post('/api/leads', async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
+});
+
+process.on('SIGINT', async () => {
+  try {
+    await mongoose.connection.close();
+    console.log('Conexión a MongoDB cerrada');
+    process.exit(0);
+  } catch (err) {
+    console.error('Error al cerrar la conexión de MongoDB:', err);
+    process.exit(1);
+  }
 });
